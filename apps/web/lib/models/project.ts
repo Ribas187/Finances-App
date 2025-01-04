@@ -1,12 +1,14 @@
+import { Category } from "./category";
+
 export type ProjectUser = {
   id: string;
   name: string;
   email: string;
   image?: string;
-  role: 'owner' | 'member';
-}
+  role: "owner" | "member";
+};
 
-export type Project = { 
+export type Project = {
   id: string;
   name: string;
   slug: string;
@@ -19,4 +21,5 @@ export type Project = {
     role: string;
   }[];
   externalReferenceId?: string;
-}
+  categories?: Category[];
+};

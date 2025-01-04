@@ -1,5 +1,5 @@
 import { withAuth } from "@/lib/auth/session";
-import { Category } from "@/lib/models/category";
+import { Category, CreateCategoryDto } from "@/lib/models/category";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
@@ -18,7 +18,7 @@ export const GET = withAuth(
 
 export const POST = withAuth(
   async ({ project, req }): Promise<NextResponse<Category>> => {
-    const body = await req.json();
+    const body = await req.json() as CreateCategoryDto;
 
     const category = await prisma.category.create({
       data: {
