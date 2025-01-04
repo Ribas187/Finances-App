@@ -5,30 +5,14 @@ import { NextResponse } from "next/server";
 
 export const GET = withAuth(
   async ({ project }): Promise<NextResponse<Category[]>> => {
-    const categories = await prisma.category.findMany({
-      where: {
-        projectId: project.id,
-      },
-      select: {
-        id: true,
-        budget: true,
-        color: true,
-        name: true,
-        projectId: true,
-      },
-      orderBy: {
-        name: "asc",
-      },
-    });
-
     const categoriesWithExpensesSum = await prisma.$queryRaw<Category[]>`
-      SELECT c.id, c.name, c.budget, c.color, c.projectId, SUM(e.amount) as expensesSum
-      FROM Category c
-      LEFT JOIN CategoryExpense e ON c.id = e.categoryId`;
+      SELECT c.id, c.name, c.budget, c.color, c."projectId", SUM(e.amount) as "expensesSum"
+      FROM "Category" c
+      LEFT JOIN "CategoryExpense" e ON c.id = e."categoryId"
+      WHERE c."projectId" = ${project.id}
+      GROUP BY c.id, c.name, c.budget, c.color, c."projectId"`;
 
-    console.log(categoriesWithExpensesSum);
-
-    return NextResponse.json(categories);
+    return NextResponse.json(categoriesWithExpensesSum);
   },
 );
 
