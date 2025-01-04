@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-export const APP_TITLE = 'TurboStack';
-export const TITLE = 'Ship your startup at Turbo Speed';
-export const DESCRIPTION = 'Don\'t waste your time on boring things. Focus on making money online.'
+export const APP_TITLE = 'FinancesApp';
+export const TITLE = 'Organize suas finanças';
+export const DESCRIPTION = 'A FinancesApp é uma aplicação para ajudar você a organizar suas finanças.';
 
 export const defaultMetadata: Metadata = {
   title: {
