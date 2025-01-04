@@ -44,7 +44,7 @@ export function Sidebar() {
     <aside className={cn('flex flex-col w-[300px] pt-4 border-r min-h-full', `min-sm: ${isSidebarOpen ? 'w-full translate-x-0' : 'hidden -translate-x-full'}`)}>
       <header className="flex space-x-2 px-6 items-center">
         <Logo className="h-6 w-6" />
-        <h1 className="font-semibold text-xl">Acme</h1>
+        <h1 className="font-semibold text-xl">FinancesApp</h1>
       </header>
       <div className="px-3 mt-5">
         <ProjectSelect />
