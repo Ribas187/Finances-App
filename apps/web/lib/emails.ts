@@ -18,7 +18,8 @@ export async function sendEmail({
   text,
   html,
 }: SendEmailProps) {
-  return client.emails.send({
+  console.log('sending email to ', to);
+  const response = await client.emails.send({
     from: "guilherme@makemyplanners.com",
     to,
     subject,
@@ -26,6 +27,14 @@ export async function sendEmail({
     ...(html && { html }),
     ...(react && { react }),
   } as any);
+
+  
+  if(response.error) {
+    console.error(response.error);
+  }
+  console.log('email sent ', response);
+
+  return response;
 }
 
 type AddUserToNewsletterProps = {
