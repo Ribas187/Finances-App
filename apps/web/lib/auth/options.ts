@@ -17,12 +17,12 @@ const GOOGLE_PROVIDER = 'google';
 export const authOptions: NextAuthOptions = {
   providers: [
     EmailProvider({
-      sendVerificationRequest({ identifier, url }) {
+      async sendVerificationRequest({ identifier, url }) {
         if (isDevelopment()) {
           console.log('Magic Link: ', url);
           // return;
         }
-        sendEmail({
+        await sendEmail({
           to: identifier,
           subject: 'Seu link para login',
           react: MagicLink({ url, email: identifier })
