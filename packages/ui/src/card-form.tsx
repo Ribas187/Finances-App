@@ -1,7 +1,15 @@
 import { InputHTMLAttributes, useMemo, useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
 import { Button } from "./button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./card";
 import { Input } from "./input";
+import { InputCurrency } from "./input-currency";
 
 type CardFormProps = {
   title: string;
@@ -10,7 +18,7 @@ type CardFormProps = {
   inputAttrs: InputHTMLAttributes<HTMLInputElement>;
   submitButtonText?: string;
   handleSubmit: (data: any) => Promise<any>;
-}
+};
 
 export function CardForm({
   title,
@@ -24,7 +32,7 @@ export function CardForm({
   const [saving, setSaving] = useState(false);
 
   const savingDisabled = useMemo(() => {
-    return saving || !value || value === inputAttrs.defaultValue
+    return saving || !value || value === inputAttrs.defaultValue;
   }, [saving, value, inputAttrs.defaultValue]);
 
   return (
@@ -33,8 +41,8 @@ export function CardForm({
         e.preventDefault();
         setSaving(true);
         await handleSubmit({
-          [inputAttrs.name as string]: value
-        })
+          [inputAttrs.name as string]: value,
+        });
         setSaving(false);
       }}
       className="w-full"
@@ -45,20 +53,32 @@ export function CardForm({
           <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardContent>
-          <Input
-            {...inputAttrs}
-            className="max-w-lg"
-            value={value}
-            onChange={e => setValue(e.target.value)}
-          />
+          {inputAttrs.datatype === "currency" ? (
+            <InputCurrency
+              {...inputAttrs}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+          ) : (
+            <Input
+              {...inputAttrs}
+              className="max-w-lg"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+          )}
         </CardContent>
-        <CardFooter className="border-t py-4 flex justify-between w-full">
-          {helpText && <p className="text-muted-foreground text-sm">{helpText}</p>}
+        <CardFooter className="flex w-full justify-between border-t py-4">
+          {helpText && (
+            <p className="text-muted-foreground text-sm">{helpText}</p>
+          )}
           <div className="shrink-0">
-            <Button loading={saving} disabled={savingDisabled}>{submitButtonText}</Button>
+            <Button loading={saving} disabled={savingDisabled}>
+              {submitButtonText}
+            </Button>
           </div>
         </CardFooter>
       </Card>
     </form>
-  )
+  );
 }

@@ -13,6 +13,7 @@ export type Project = {
   logo?: string | null;
   usersLimit: number;
   plan: string;
+  budget: number;
   users: {
     id: string;
     role: string;

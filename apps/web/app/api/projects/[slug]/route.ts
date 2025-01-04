@@ -7,7 +7,7 @@ export const GET = withAuth(async ({ project }) => {
 });
 
 export const PUT = withAuth(async ({ project, req }) => {
-  const { name } = await req.json();
+  const { name, budget } = await req.json();
 
   try {
     const response = await prisma.project.update({
@@ -15,7 +15,8 @@ export const PUT = withAuth(async ({ project, req }) => {
         slug: project.slug
       },
       data: {
-        ...(name && { name })
+        ...(name && { name }),
+        ...(budget && { budget: Number(budget) })
       }
     })
 

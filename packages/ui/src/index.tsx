@@ -12,6 +12,7 @@ export * from './chart';
 export * from './dialog';
 export * from './file-upload';
 export * from './input';
+export * from './input-currency';
 export * from './label';
 export * from './navbar';
 export * from './date-range-picker';

@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "./options";
 import prisma from '@/lib/prisma';
 import { Project } from '@/lib/models/project';
+import { bu } from "@upstash/redis/zmscore-Dc6Llqgr";
 
 type Session = {
   user: {
@@ -61,6 +62,7 @@ export const withAuth =
           slug: true,
           logo: true,
           plan: true,
+          budget: true,
           usersLimit: true,
           users: {
             select: {
