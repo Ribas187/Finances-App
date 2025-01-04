@@ -4,13 +4,6 @@ const path = require("path");
 module.exports = {
   reactStrictMode: false,
   transpilePackages: ["@turbostack/ui"],
-  experimental: {
-    serverComponentsExternalPackages: [
-      "@react-email/components",
-      "@react-email/render",
-      "@react-email/tailwind",
-    ],
-  },
   images: {
     remotePatterns: [
       { hostname: 'api.dicebear.com' },
