@@ -93,9 +93,10 @@ model Project {
   invites ProjectInvite[]
   users   ProjectUsers[]
 
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  usageCheckedAt DateTime @default(now())
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  usageCheckedAt DateTime   @default(now())
+  categories     Category[]
 
   @@index(usageCheckedAt(sort: Asc))
 }
@@ -131,6 +132,9 @@ model Category {
   name   String
   color  String
   budget Float  @default(0)
+
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
 
   categoryExpenses CategoryExpense[]
 
