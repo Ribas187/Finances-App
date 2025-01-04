@@ -11,6 +11,10 @@
       "outputs": [
         ".next/**",
         "!.next/cache/**"
+      ],
+      "env": [
+        "RESEND_*",
+        "DATABASE_URL"
       ]
     },
     "lint": {
