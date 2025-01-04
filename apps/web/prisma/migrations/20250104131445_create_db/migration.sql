@@ -66,6 +66,7 @@ CREATE TABLE "Project" (
     "slug" TEXT NOT NULL,
     "logo" TEXT,
     "default" BOOLEAN NOT NULL DEFAULT false,
+    "budget" DOUBLE PRECISION NOT NULL DEFAULT 0,
     "plan" TEXT NOT NULL DEFAULT 'FREE',
     "usersLimit" INTEGER NOT NULL DEFAULT 1,
     "externalReferenceId" TEXT,
@@ -96,6 +97,33 @@ CREATE TABLE "ProjectUsers" (
     "projectId" TEXT NOT NULL,
 
     CONSTRAINT "ProjectUsers_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Category" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "color" TEXT NOT NULL,
+    "budget" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "projectId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "CategoryExpense" (
+    "id" TEXT NOT NULL,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "description" TEXT NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "categoryId" TEXT NOT NULL,
+
+    CONSTRAINT "CategoryExpense_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -146,6 +174,12 @@ CREATE INDEX "ProjectUsers_projectId_idx" ON "ProjectUsers"("projectId");
 -- CreateIndex
 CREATE UNIQUE INDEX "ProjectUsers_userId_projectId_key" ON "ProjectUsers"("userId", "projectId");
 
+-- CreateIndex
+CREATE INDEX "Category_projectId_idx" ON "Category"("projectId");
+
+-- CreateIndex
+CREATE INDEX "CategoryExpense_categoryId_idx" ON "CategoryExpense"("categoryId");
+
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -163,3 +197,9 @@ ALTER TABLE "ProjectUsers" ADD CONSTRAINT "ProjectUsers_userId_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "ProjectUsers" ADD CONSTRAINT "ProjectUsers_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Category" ADD CONSTRAINT "Category_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CategoryExpense" ADD CONSTRAINT "CategoryExpense_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE CASCADE ON UPDATE CASCADE;

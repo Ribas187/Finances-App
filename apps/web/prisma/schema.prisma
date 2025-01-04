@@ -140,6 +140,8 @@ model Category {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+
+  @@index([projectId])
 }
 
 model CategoryExpense {
@@ -154,4 +156,6 @@ model CategoryExpense {
 
   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId String
+
+  @@index([categoryId])
 }
