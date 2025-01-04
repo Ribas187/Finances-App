@@ -49,7 +49,7 @@ export default function LoginForm() {
         </div>
         <Button loading={loading}>Continuar com email</Button>
       </form>
-      <div className="relative">
+      {/* <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>
@@ -66,7 +66,7 @@ export default function LoginForm() {
           <GoogleIcon className="h-4 w-4" />
           <span>Google</span>
         </Button>
-      </div>
+      </div> */}
     </>
   )
 }
