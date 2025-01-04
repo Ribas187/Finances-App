@@ -66,7 +66,7 @@ export function Sidebar() {
           )
         })}
       </nav>
-      <UpgradeToPro />
+      {/* <UpgradeToPro /> */}
       <div className="flex flex-col gap-2 px-3 mb-4">
         <Link
           href="/help"
