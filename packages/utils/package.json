@@ -1,0 +1,42 @@
+{
+  "name": "@turbostack/utils",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^1.10.12",
+    "@turbostack/eslint-config": "workspace:*",
+    "@turbostack/tailwind-config": "workspace:*",
+    "@turbostack/typescript-config": "workspace:*",
+    "@types/eslint": "^8.44.7",
+    "@types/node": "^20.5.2",
+    "tsup": "^8.0.1",
+    "typescript": "^5.2.2"
+  },
+  "author": "Vitor Medeiro <vitor.medeiro10@gmail.com>",
+  "homepage": "https://turbostack.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravitech-solutions/turbostack.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ravitech-solutions/turbostack.io/issues"
+  },
+  "keywords": [
+    "tubostack",
+    "turbostack.io",
+    "utilities"
+  ],
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0",
+    "zod": "^3.23.8"
+  }
+}

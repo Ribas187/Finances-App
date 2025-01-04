@@ -1,0 +1,44 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "TurboStack",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "modeToggle": {
+    "default": "light"
+  },
+  "favicon": "/logo/logo.svg",
+  "colors": {
+    "primary": "#4069e2",
+    "light": "#40BCE3",
+    "dark": "#4069e2",
+    "anchors": {
+      "from": "#4069e2",
+      "to": "#4069e2"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:vitor@turbostack.io"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get TurboStack",
+    "url": "https://turbostack.io"
+  },
+  "navigation": [
+    {
+      "group": "",
+      "pages": [
+        "get-started"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "x": "https://x.com/mintlify",
+    "github": "https://github.com/mintlify",
+    "linkedin": "https://www.linkedin.com/company/mintsearch"
+  }
+}

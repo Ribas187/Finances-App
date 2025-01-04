@@ -1,0 +1,1 @@
+export const AVATAR_DICEBEAR_URL = `https://api.dicebear.com/7.x/notionists/svg?seed=`

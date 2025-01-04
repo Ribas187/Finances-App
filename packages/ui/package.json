@@ -1,0 +1,70 @@
+{
+  "name": "@turbostack/ui",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "next": "^14.2.12",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^1.10.12",
+    "@turbostack/eslint-config": "workspace:*",
+    "@turbostack/tailwind-config": "workspace:*",
+    "@turbostack/typescript-config": "workspace:*",
+    "@turbostack/utils": "workspace:*",
+    "@types/eslint": "^8.44.7",
+    "@types/node": "^20.5.2",
+    "@types/react": "^18.3.7",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "next": "^14.2.12",
+    "postcss": "^8.4.31",
+    "react": "^18.3.1",
+    "tailwindcss": "^3.4.4",
+    "tsup": "^8.0.1",
+    "typescript": "^5.2.2"
+  },
+  "author": "Vitor Medeiro <vitor.medeiro10@gmail.com>",
+  "homepage": "https://turbostack.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravitech-solutions/turbostack.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ravitech-solutions/turbostack.io/issues"
+  },
+  "keywords": [
+    "tubostack",
+    "turbostack.io",
+    "tailwind",
+    "tailwindcss"
+  ],
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-progress": "^1.1.0",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@turbostack/utils": "workspace:^",
+    "class-variance-authority": "^0.7.0",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.441.0",
+    "react-day-picker": "^9.1.0",
+    "recharts": "^2.12.7",
+    "sonner": "^1.2.2",
+    "vaul": "^0.7.9"
+  }
+}
