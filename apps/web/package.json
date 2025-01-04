@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -e .env.local -- prisma generate && next dev",
-    "build": "next build",
+    "build": "next build && prisma migrate deploy",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
     "prisma:generate": "prisma generate",
