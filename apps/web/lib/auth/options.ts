@@ -119,7 +119,7 @@ export const authOptions: NextAuthOptions = {
 
       await prisma.project.create({
         data: {
-          name: 'Finanças de ' + user.name,
+          name: 'Minhas Finanças',
           slug: projectSlug,
           default: true,
           users: {
