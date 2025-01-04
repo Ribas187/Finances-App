@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
       sendVerificationRequest({ identifier, url }) {
         if (isDevelopment()) {
           console.log('Magic Link: ', url);
-          return;
+          // return;
         }
         sendEmail({
           to: identifier,
