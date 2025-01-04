@@ -21,27 +21,27 @@ export const MagicLink = ({
   return (
     <Html>
       <Head />
-      <Preview>🪄 Your TurboStack Login Link</Preview>
+      <Preview>🪄 Seu Link para login | FinancesApp</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans">
           <Container className="mx-auto my-10 max-w-[500px] rounded border border-solid border-gray-200 px-10 py-5">
             <Heading className="mx-0 my-7 p-0 text-xl font-semibold text-foreground">
-              🪄 Your Login Link
+              🪄 Seu link de login
             </Heading>
             <Text className="text-sm leading-6">
-              Please click the magic link below to sign in to your account.
+              Por favor, clique no link abaixo para acessar sua conta.
             </Text>
             <Section className="mt-4 mb-8">
               <Link
                 className="rounded-full text-center text-[12px] font-semibold text-purple-500 no-underline"
                 href={url}
               >
-                👉 Click here to sign in 👈
+                👉 Clique aqui para entrar 👈
               </Link>
             </Section>
             <Text className="mt-12">
-              Best, 
-              <br />- TurboStack Team
+              Valeu, 
+              <br />- Guilherme Ribas
             </Text>
           </Container>
         </Body>

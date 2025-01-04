@@ -25,31 +25,31 @@ export const WelcomeEmail = ({ name = 'Vitor' }: WelcomeEmailProps) => (
   <Html>
     <Head />
     <Preview>
-      TurboStack: Ship your startup at TurboSpeed
+      FinancesApp: sua plataforma de controle financeiro
     </Preview>
     <Tailwind>
       <Body className="mx-auto my-auto bg-white font-sans">
         <Container className="mx-auto bg-white py-12 px-8">
           <Section className="border mx-8">
             <Text className="text-md">
-              Welcome to TurboStack {name}!.
+              Bem vindo ao FinancesApp {name}!.
             </Text>
             <Text>
-              TurboStack is a SaaS template that allows makers to ship their ideas at Turbo Speed.
+              FinancesApp é uma plataforma de controle financeiro que te ajuda a organizar suas finanças de forma simples e eficiente.
             </Text> 
             <Button
               className="bg-blue-500 text-white rounded p-4"
               href="https://docs.turbostack.io"
             >
-              Get started
+              Vamos lá
             </Button>
             <Text className="mt-4 text-md">
-              Let me know if you have any issues, i'll gladly help you solve them.
+              Fale comigo se tiver qualquer problema, ficarei feliz em te ajudar.
             </Text>
             <Text className="text-md">Kind regards</Text>
             <Hr className="text-gray-100" />
             <Text className="text-md">
-              TurboStack Team
+              Team FinancesApp
             </Text>
           </Section>
         </Container>
