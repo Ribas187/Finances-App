@@ -1,12 +1,12 @@
+import { fetcher } from "@turbostack/utils";
 import { useParams } from "next/navigation";
 import useSWR from "swr";
 import { Category } from "../models/category";
-import { fetcher } from "@turbostack/utils";
 
 export function useCategories() {
   const { slug } = useParams() as { slug?: string };
 
-  const { data, error } = useSWR<Category[]>(
+  const { data, error, mutate } = useSWR<Category[]>(
     `/api/projects/${slug}/categories`,
     fetcher,
     {
@@ -18,5 +18,6 @@ export function useCategories() {
     categories: data,
     error,
     loading: !data && !error,
+    mutate,
   };
 }

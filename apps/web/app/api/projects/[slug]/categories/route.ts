@@ -18,12 +18,27 @@ export const GET = withAuth(
 
 export const POST = withAuth(
   async ({ project, req }): Promise<NextResponse<Category>> => {
-    const body = await req.json() as CreateCategoryDto;
+    const body = (await req.json()) as CreateCategoryDto;
 
     const category = await prisma.category.create({
       data: {
         ...body,
         projectId: project.id,
+      },
+    });
+
+    return NextResponse.json(category);
+  },
+);
+
+export const DELETE = withAuth(
+  async ({ req }): Promise<NextResponse<Category>> => {
+    const url = new URL(req.url);
+    const id = url.searchParams.get('id');
+
+    const category = await prisma.category.delete({
+      where: {
+        id: id as string,
       },
     });
 

@@ -9,9 +9,31 @@ import {
   CardTitle,
   Progress,
 } from "@turbostack/ui";
+import { Trash } from "lucide-react";
+import { useParams } from "next/navigation";
 
 export function CategoriesList() {
-  const { categories, loading, error } = useCategories();
+  const { slug } = useParams() as { slug?: string };
+  const { categories, loading, error, mutate } = useCategories();
+
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(
+        `/api/projects/${slug}/categories?id=${id}`,
+        {
+          method: "DELETE",
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete category");
+      }
+
+      await mutate();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (loading) return <div>Loading...</div>;
 
@@ -29,8 +51,8 @@ export function CategoriesList() {
           <CardHeader className="text-lg font-semibold">
             <CardTitle>{category.name}</CardTitle>
 
-            <CardDescription className="pt-2 flex items-end flex-col">
-              <span >
+            <CardDescription className="flex flex-col items-end pt-2">
+              <span>
                 R${category.expensesSum?.toFixed(2)} / R$
                 {category.budget.toFixed(2)}
               </span>
@@ -38,14 +60,17 @@ export function CategoriesList() {
               <Progress
                 progressColor={category.color}
                 value={((category.expensesSum || 0) * 100) / category.budget}
-                className={`mt-2 w-[%{(category.expensesSum || 0) * 100 / category.budget)}%]`}
+                className={`w-[%{(category.expensesSum || 0) * 100 / category.budget)}%] mt-2`}
               />
             </CardDescription>
           </CardHeader>
 
           <CardContent></CardContent>
 
-          <CardFooter className="flex justify-end">
+          <CardFooter className="flex justify-between">
+            <Button variant={"ghost"} onClick={() => handleDelete(category.id)}>
+              <Trash />
+            </Button>
             <Button variant={"outline"}>Abrir gastos</Button>
           </CardFooter>
         </Card>
