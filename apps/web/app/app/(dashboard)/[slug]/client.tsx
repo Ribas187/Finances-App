@@ -2,7 +2,6 @@
 
 import { PeriodSelector } from "@/components/date/period-selector";
 import { usePeriod } from "@/lib/hook/use-period";
-import { useCategories } from "@/lib/queries/use-categories";
 import { useChartData } from "@/lib/queries/use-chart-data";
 import {
   Card,
@@ -18,7 +17,6 @@ import { useSearchParams } from "next/navigation";
 
 export function DashboardPageClient() {
   const searchParams = useSearchParams();
-  const { categories } = useCategories();
   const period = usePeriod(searchParams, {
     start: subDays(new Date(), 30),
     end: new Date(),
@@ -28,8 +26,6 @@ export function DashboardPageClient() {
     ...data,
     value: Math.floor(data.value),
   }));
-
-  console.log(categories);
 
   const revenueData = useChartData({
     start: subDays(new Date(), 7),
