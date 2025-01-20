@@ -5,7 +5,7 @@ export default async function Page() {
   const defaultProject = await getUserDefaultProject();
 
   if (defaultProject)
-    redirect(`/${defaultProject}`);
+    redirect(`/${defaultProject}/categories`);
 
   return redirect('/sign-in')
 }

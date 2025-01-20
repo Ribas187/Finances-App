@@ -48,7 +48,7 @@ export const ProjectInviteEmail = ({
               />
             </Section>
             <Heading className="text-foreground text-[24px] font-normal text-center p-0 my-[30px] mx-0">
-              Entre no <strong>{projectName}</strong>
+              Entre no projeto <strong>{projectName}</strong>
             </Heading>
             <Text className="text-foreground text-[14px] leading-[24px]">
               Hello!

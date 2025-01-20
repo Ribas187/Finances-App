@@ -13,6 +13,7 @@ import {
   LineChart,
 } from "@turbostack/ui";
 import { subDays } from "date-fns";
+import { Construction } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
 export function DashboardPageClient() {
@@ -57,13 +58,13 @@ export function DashboardPageClient() {
         <div className="flex flex-col space-y-1">
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">
-            Here you get an overview of your project's performance
+            Aqui você verá um resumo dos dados do seu projeto, mas ainda estamos
+            em construção. <Construction />
           </p>
         </div>
-        <PeriodSelector />
       </div>
 
-      <div className="mt-8 flex gap-4">
+      {/* <div className="mt-8 flex gap-4">
         <Card className="w-full">
           <CardHeader>
             <CardTitle>Revenue</CardTitle>
@@ -123,8 +124,8 @@ export function DashboardPageClient() {
             />
           </CardContent>
         </Card>
-      </div>
-      <div className="mt-4 w-full">
+      </div> */}
+      {/* <div className="mt-4 w-full">
         <Card className="w-full">
           <CardHeader>
             <CardTitle>Users</CardTitle>
@@ -140,7 +141,7 @@ export function DashboardPageClient() {
             />
           </CardContent>
         </Card>
-      </div>
+      </div> */}
     </div>
   );
 }

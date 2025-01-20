@@ -40,8 +40,8 @@ function AcceptInviteModal({ showAcceptInviteModal, setShowAcceptInviteModal }: 
     })
 
     toast.promise(promise, {
-      loading: 'Accepting invite',
-      success: `You now are a part of this project!`,
+      loading: 'Aceitando convite',
+      success: `Você agora faz parte do projeto ${slug}`,
       error: err => err
     })
   }, [slug])
@@ -54,11 +54,11 @@ function AcceptInviteModal({ showAcceptInviteModal, setShowAcceptInviteModal }: 
         {error?.status === 409 ? (
           <>
             <DialogHeader className="items-center">
-              <DialogTitle>You received an invite!</DialogTitle>
-              <DialogDescription className="text-center">You've been invited to join and collaborate on <span className="font-semibold text-foreground">{slug}</span></DialogDescription>
+              <DialogTitle>Você recebeu um convite!</DialogTitle>
+              <DialogDescription className="text-center">Você foi convidado para entrar no projeto <span className="font-semibold text-foreground">{slug}</span></DialogDescription>
             </DialogHeader>
             <div className="mt-3 border-t border-border pt-6">
-              <Button onClick={acceptInvite} loading={loading}>Accept Invite</Button>
+              <Button onClick={acceptInvite} loading={loading}>Aceitar convite</Button>
             </div>
           </>
         ) : (
