@@ -1,27 +1,24 @@
 import { fetcher } from "@turbostack/utils";
 import { useParams } from "next/navigation";
 import useSWR from "swr";
-import { Category } from "../models/category";
+import { CategoryExpense } from "../models/category";
 
-export function useCategories() {
+export function useExpenses() {
   const { slug, categoryId } = useParams() as {
     slug?: string;
     categoryId?: string;
   };
 
-  const { data, error, mutate } = useSWR<Category[]>(
-    `/api/projects/${slug}/categories`,
+  const { data, error, mutate } = useSWR<CategoryExpense[]>(
+    `/api/projects/${slug}/categories/expenses?categoryId=${categoryId}`,
     fetcher,
     {
       dedupingInterval: 10_000,
     },
   );
 
-  const currentCategory = data?.find((category) => category.id === categoryId);
-
   return {
-    categories: data,
-    currentCategory,
+    expenses: data,
     error,
     loading: !data && !error,
     mutate,

@@ -9,12 +9,13 @@ import {
   CardTitle,
   Progress,
 } from "@turbostack/ui";
-import { Trash } from "lucide-react";
-import { useParams } from "next/navigation";
+import { AlertCircle, Trash } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
 
 export function CategoriesList() {
   const { slug } = useParams() as { slug?: string };
   const { categories, loading, error, mutate } = useCategories();
+  const { push } = useRouter();
 
   const handleDelete = async (id: string) => {
     try {
@@ -35,6 +36,10 @@ export function CategoriesList() {
     }
   };
 
+  const onOpenExpenses = (id: string) => {
+    push(`/${slug}/expenses/${id}`);
+  };
+
   if (loading) return <div>Loading...</div>;
 
   if (error) return <div>Error: {error.message}</div>;
@@ -52,7 +57,11 @@ export function CategoriesList() {
             <CardTitle>{category.name}</CardTitle>
 
             <CardDescription className="flex flex-col items-end pt-2">
-              <span>
+              <span className="flex items-center gap-2">
+                {category.expensesSum &&
+                  category.expensesSum > category.budget && (
+                    <AlertCircle name="warning" className="text-red-500" />
+                  )}
                 R${category.expensesSum?.toFixed(2)} / R$
                 {category.budget.toFixed(2)}
               </span>
@@ -71,7 +80,12 @@ export function CategoriesList() {
             <Button variant={"ghost"} onClick={() => handleDelete(category.id)}>
               <Trash />
             </Button>
-            <Button variant={"outline"}>Abrir gastos</Button>
+            <Button
+              onClick={() => onOpenExpenses(category.id)}
+              variant={"outline"}
+            >
+              Abrir despesas
+            </Button>
           </CardFooter>
         </Card>
       ))}

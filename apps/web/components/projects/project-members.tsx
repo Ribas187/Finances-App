@@ -19,7 +19,7 @@ export function ProjectMembers() {
           {members?.map(member => (
             <div key={member.id} className="flex space-x-3">
               <Avatar fallback={member.email} image={member.image} />
-              <div className="flex flex-col text-sm flex-1">
+              <div className="flex flex-col text-sm flex-1 max-w-full truncate">
                 <p className="font-semibold text-foreground">{member.name ?? member.email}</p>
                 <p className="text-muted-foreground">{member.email}</p>
               </div>
