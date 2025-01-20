@@ -21,6 +21,8 @@ export function InviteMemberToProject() {
         } 
 
         resolve(null)
+      }).catch(err => {
+        return reject(err);
       })
     })
 

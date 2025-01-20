@@ -1,28 +1,35 @@
 import { withAuth } from "@/lib/auth/session";
-import prisma from '@/lib/prisma';
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export const GET = withAuth(async ({ session, headers }) => {
-  return prisma.project.findMany({
-    where: {
-      users: {
-        some: {
-          userId: session.user.id
-        }
-      }
-    }
-  }).then(projects => NextResponse.json(projects, headers))
+  return prisma.project
+    .findMany({
+      where: {
+        users: {
+          some: {
+            userId: session.user.id,
+          },
+        },
+      },
+    })
+    .then((projects) => {
+      return NextResponse.json(projects);
+    });
 });
 
 export const POST = withAuth(async ({ req, session }) => {
   const { name, slug } = await req.json();
 
   const existingProject = await prisma.project.findUnique({
-    where: { slug }
-  })
+    where: { slug },
+  });
 
   if (existingProject) {
-    return NextResponse.json({ message: 'Project already exists' }, { status: 404 })
+    return NextResponse.json(
+      { message: "Project already exists" },
+      { status: 404 },
+    );
   }
 
   const createdProject = await prisma.project.create({
@@ -32,13 +39,16 @@ export const POST = withAuth(async ({ req, session }) => {
       users: {
         create: {
           userId: session.user.id!!,
-          role: 'owner'
-        }
-      }
+          role: "owner",
+        },
+      },
     },
   });
 
-  return NextResponse.json({ data: createdProject }, { 
-    status: 201
-  })
-})
+  return NextResponse.json(
+    { data: createdProject },
+    {
+      status: 201,
+    },
+  );
+});

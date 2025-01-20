@@ -27,7 +27,7 @@ export function ProjectSelect() {
     return projects?.find(project => project.slug === slug);
   }, [projects]);
 
-  if (!projects || loading) {
+  if (!projects || loading || !selected) {
     return <ProjectSelectPlaceholder />
   }
 
