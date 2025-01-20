@@ -1,3 +1,4 @@
+import { useCategories } from "@/lib/queries/use-categories";
 import { useExpenses } from "@/lib/queries/use-expenses";
 import {
   Button,
@@ -14,6 +15,7 @@ import { useParams } from "next/navigation";
 export function ExpensesList() {
   const { slug } = useParams() as { slug?: string };
   const { expenses, loading, error, mutate } = useExpenses();
+  const { mutate: refreshCategories } = useCategories();
 
   const handleDelete = async (id: string) => {
     try {
@@ -29,6 +31,7 @@ export function ExpensesList() {
       }
 
       await mutate();
+      refreshCategories();
     } catch (error) {
       console.error(error);
     }
@@ -41,12 +44,12 @@ export function ExpensesList() {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {expenses?.map((expense) => (
-        <Card key={expense.id} className="p-0">
-          <CardHeader className="flex flex-row items-center justify-between text-lg font-semibold">
-            <CardTitle>{expense.description}</CardTitle>
+        <Card key={expense.id}>
+          <CardHeader className="flex flex-col pb-1 font-semibold">
+            <CardTitle className="text-base">{expense.description}</CardTitle>
 
             <CardDescription>
-              <span>R${expense.amount?.toFixed(2)}</span>
+              <span className="text-lg">R${expense.amount?.toFixed(2)}</span>
             </CardDescription>
           </CardHeader>
 
@@ -56,7 +59,7 @@ export function ExpensesList() {
               <span>Hora: {format(expense.date, "hh:mm")}</span>
             </CardDescription>
             <Button variant={"ghost"} onClick={() => handleDelete(expense.id)}>
-              <Trash />
+              <Trash size={20} />
             </Button>
           </CardContent>
         </Card>
