@@ -7,8 +7,21 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export const GET = withAuth(
-  async ({ params }): Promise<NextResponse<CategoryExpense[]>> => {
-    const { categoryId } = params;
+  async ({ req }): Promise<NextResponse<CategoryExpense[] | { error: {} }>> => {
+    const url = new URL(req.url);
+    const categoryId = url.searchParams.get("categoryId");
+    
+    if (!categoryId) {
+      return NextResponse.json(
+        {
+          error: {
+            code: "missing_category_id",
+            message: "Category ID is required",
+          },
+        },
+        { status: 400 },
+      );
+    }
 
     const expenses = await prisma.categoryExpense.findMany({
       where: {

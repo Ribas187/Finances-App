@@ -18,9 +18,9 @@ import React from "react";
 
 export function AddCategory() {
   const { slug } = useParams() as { slug?: string };
-  const [categoryData, setCategoryData] = React.useState<CreateCategoryDto>(
-    {} as CreateCategoryDto,
-  );
+  const [categoryData, setCategoryData] = React.useState<CreateCategoryDto>({
+    color: "#000",
+  } as CreateCategoryDto);
   const [isOpen, setIsOpen] = React.useState(false);
   const { mutate } = useCategories();
 
@@ -97,6 +97,7 @@ export function AddCategory() {
               id="color"
               type="color"
               className="col-span-3"
+              defaultValue={"#000000"}
               onChange={(e) =>
                 setCategoryData({ ...categoryData, color: e.target.value })
               }
